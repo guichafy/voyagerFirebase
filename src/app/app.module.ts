@@ -37,7 +37,6 @@ import { AuthService } from './core/auth/auth.service';
     FormsModule,
     NgbModule,
     AppRoutingModule,
-    LoginModule,
     DashboardModule,
     ReactiveFormsModule, // Validação Form
     AngularFireModule.initializeApp(environment.firebase),

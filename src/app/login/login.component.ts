@@ -9,7 +9,6 @@ templateUrl:  './login.component.html',
 styleUrls: ['./login.component.css']
 })
 export  class  LoginComponent  implements  OnInit {
-    Router
     constructor(private  authService:  AuthService, private formBuilder: FormBuilder) { }
     //Bind com [formGroup]="loginForm"
     loginForm: FormGroup;
