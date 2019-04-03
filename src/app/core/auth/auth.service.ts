@@ -2,6 +2,7 @@ import { Injectable, NgModule } from '@angular/core';
 import { Router } from "@angular/router";
 import { User } from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Subject, Observable } from 'rxjs';
 
 
 
@@ -10,16 +11,14 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class AuthService {
 
-  user: User;
+  private user$ = new Subject<User>();
+  private user: User;
+
 
   constructor(public afAuth: AngularFireAuth, public router: Router) {
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-        this.user = user;
-        localStorage.setItem('user', JSON.stringify(this.user));
-      } else {
-        localStorage.setItem('user', null);
-      }
+    this.afAuth.authState.subscribe(_user => {
+      this.user = _user;
+      this.user$.next(_user);
     })
   }
 
@@ -28,14 +27,21 @@ export class AuthService {
     this.router.navigate([nextUrl]);
   }
 
-  get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return user !== null;
+  get isLoggedIn() {
+    if (!this.user || this.user.isAnonymous) {
+      return false;
+    } else {
+      return true;
+    }
   }
-  
+  get currentUser(): Observable<User> {
+    return this.user$.asObservable();
+    // const user = JSON.parse(localStorage.getItem('user')) as User;
+    // return user;
+  }
+
   async logout() {
     await this.afAuth.auth.signOut();
-    localStorage.removeItem('user');
     this.router.navigate(['admin/login']);
   }
 
