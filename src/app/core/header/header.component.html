@@ -1,0 +1,63 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom box-shadow" >
+  <a class="navbar-brand" href="#">Voyager 1.0</a>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a  class="nav-link"  routerLink="/admin/home">Home</a>
+      </li>
+      <li  *ngIf="authService.isLoggedIn" class="nav-item">
+        <a class="nav-link"  (click)="authService.logout()">Logout</a>
+    </li>
+    </ul>
+  </div>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="p-2 text-dark" href="#">Features</a>
+    <a class="p-2 text-dark" href="#">Enterprise</a>
+    <a class="p-2 text-dark" href="#">Support</a>
+    <a class="p-2 text-dark" href="#">Pricing</a>
+  </nav>
+</nav> -->
+
+<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+  <a class="navbar-brand text-light">Voyager</a>
+  <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLink='/admin/dashboard' routerLinkActive="active" *ngIf="authService.isLoggedIn">
+        <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" *ngIf="authService.isLoggedIn">
+        <a class="nav-link" href="#">Notifications</a>
+      </li>
+      <li class="nav-item" *ngIf="authService.isLoggedIn">
+        <a class="nav-link" href="#">Profile</a>
+      </li>
+      <li class="nav-item" *ngIf="authService.isLoggedIn">
+        <a class="nav-link" href="#">Switch account</a>
+      </li>
+    </ul>
+    <div class="my-2 my-lg-0">
+      <a class="btn text-light" *ngIf="!authService.isLoggedIn" routerLink='/admin/login'>Login</a>
+      <a class="btn text-light" *ngIf="authService.isLoggedIn" (click)="authService.logout()">Logout</a>
+    </div>
+  </div>
+</nav>
+<div class="nav-scroller bg-white box-shadow" *ngIf="authService.isLoggedIn">
+  <nav class="nav nav-underline">
+    <a class="nav-link" routerLink='/admin/dashboard' routerLinkActive="active">Menu</a>
+    <a class="nav-link" href="#">
+      Friends
+      <span class="badge badge-pill bg-light align-text-bottom">27</span>
+    </a>
+    <a class="nav-link" href="#">Explore</a>
+    <a class="nav-link" href="#">Suggestions</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" href="#">Link</a>
+  </nav>
+</div>
