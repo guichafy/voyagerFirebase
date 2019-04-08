@@ -39,13 +39,20 @@
         <a class="nav-link" href="#">Switch account</a>
       </li>
     </ul>
-    <div class="my-2 my-lg-0">
-      <a class="btn text-light" *ngIf="!authService.isLoggedIn" routerLink='/admin/login'>Login</a>
-      <a class="btn text-light" *ngIf="authService.isLoggedIn" (click)="authService.logout()">Logout</a>
+    <div class="my-2 my-lg-0" >
+      <div *ngIf="( authService.isLoggedIn | async) as user else elseBlock">
+        <ng-template #user>
+          <a class="btn text-light"  (click)="authService.logout()">Logout</a>
+        </ng-template>
+        <ng-template #elseBlock>
+            <a class="btn text-light"  routerLink='/admin/login'>Login</a>
+        </ng-template>
+      </div>
     </div>
+ 
   </div>
 </nav>
-<div class="nav-scroller bg-white box-shadow" *ngIf="authService.isLoggedIn">
+<!-- <div class="nav-scroller bg-white box-shadow" *ngIf="user">
   <nav class="nav nav-underline">
     <a class="nav-link" routerLink='/admin/dashboard' routerLinkActive="active">Menu</a>
     <a class="nav-link" href="#">
@@ -60,4 +67,4 @@
     <a class="nav-link" href="#">Link</a>
     <a class="nav-link" href="#">Link</a>
   </nav>
-</div>
+</div> -->
