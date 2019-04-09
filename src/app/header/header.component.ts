@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../core//auth/auth.service';
-import { Observable, BehaviorSubject } from 'rxjs';
 import { User } from 'firebase';
+import { BehaviorSubject } from 'rxjs';
+import { AuthenticationService } from '../core/authentication/authentication.service';
+
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit {
   
   private user$ = new BehaviorSubject<User>(null);;
 
-  constructor(private authService:  AuthService) {
+  constructor(private authService:  AuthenticationService) {
     authService.currentUser.subscribe(_user => {
       this.user$.next(_user);
     });

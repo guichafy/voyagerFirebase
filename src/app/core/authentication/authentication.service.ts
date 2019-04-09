@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { User } from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Subject, Observable } from 'rxjs';
+import { resolve, reject } from 'q';
 
 
 
@@ -27,7 +28,8 @@ export class AuthenticationService {
       const user:User = response.user;
       this.user = user;
       this.user$.next(user);
-    }, err => err);
+      resolve(response);
+    }, err => reject(err));
   }
 
   get isLoggedIn() {
@@ -42,6 +44,8 @@ export class AuthenticationService {
 
   async logout() {
     await this.afAuth.auth.signOut();
+    this.user$.next(null);
+    this.user = null;
     this.router.navigate(['/login']);
   }
 

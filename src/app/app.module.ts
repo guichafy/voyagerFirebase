@@ -1,26 +1,23 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SortablejsModule } from 'angular-sortablejs';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from '../environments/environment';
 import { AdminComponent } from './admin/admin.component';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { FooterComponent } from './footer/footer.component';
-import { HomeComponent } from './home/home.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { LoginModule } from './login/login.module';
 import { DashboardModule } from './admin/dashboard/dashboard.module';
-import { KanbanBoardModule } from './shared/kanban-board/kanban-board.module';
-import { SortablejsModule } from 'angular-sortablejs';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { FooterComponent } from './footer/footer.component';
 import { HeaderModule } from './header/header.module';
-import { AuthService } from './core/auth/auth.service';
+import { HomeComponent } from './home/home.component';
+import { KanbanBoardModule } from './shared/kanban-board/kanban-board.module';
+
+
 
 @NgModule({
   declarations: [
