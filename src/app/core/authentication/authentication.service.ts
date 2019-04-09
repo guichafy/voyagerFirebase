@@ -22,17 +22,17 @@ export class AuthenticationService {
     })
   }
 
-  async login(email: string, password: string) {
-    var result = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-    this.user = result.user;
-    this.user$.next(result.user);
-    return result;
-  
+  login(email: string, password: string) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password).then(response => {
+      const user:User = response.user;
+      this.user = user;
+      this.user$.next(user);
+    }, err => err);
   }
 
   get isLoggedIn() {
     const user = localStorage.getItem('user');
-    return (user == "null" || user == null ) ? false : true;
+    return (user == "null" || user == null) ? false : true;
   }
   get currentUser(): Observable<User> {
     return this.user$.asObservable();

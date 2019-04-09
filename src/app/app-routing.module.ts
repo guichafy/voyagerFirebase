@@ -4,14 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 const routes: Routes = [
+  
+  {
+    path: 'login',
+    loadChildren: './login/login.module#LoginModule' 
+  },  
   {
     path: 'admin',
     component: AdminComponent,
     children: [
-      {
-        path: 'login',
-        loadChildren: './login/login.module#LoginModule' 
-      },
       {
         path: 'dashboard',
         component: DashboardComponent

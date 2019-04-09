@@ -2,8 +2,8 @@
   <div class="row justify-content-sm-center">
     <div class="col-sm-10 col-md-6">
       <div class="card border-info">
-        <div class="card-header">Login</div>
-        <div class="card-body">
+        <div class="card-header bg-dark text-light">Login</div>
+        <div class="card-body bg-dark">
           <div class="row">
             <div class="col-md-4 text-center">
               <img src="http://icons.iconarchive.com/icons/icons8/windows-8/512/Cinema-Voyager-Badge-icon.png" width="150px">
@@ -17,8 +17,11 @@
                 <input type="password" class="form-control mb-2" placeholder="Password" formControlName="userPassword" #userPassword>
                 <vg-messageform message="Password is required!" *ngIf="loginForm.get('userPassword').errors?.required && userPassword.value != ''"></vg-messageform>
               </div>
-              <button class="btn btn-lg btn-primary btn-block mb-1" [disabled]="loginForm.invalid" (click)="login()">Login</button>
+              <button class="btn btn-lg bg-secondary text-light btn-block mb-1" [disabled]="loginForm.invalid" (click)="login()">Login</button>
             </form>
+          </div>
+          <div class="col-sm-12 text-center text-justify">
+              <p class="text-danger font-weight-light">{{error}}</p>
           </div>
         </div>
       </div>

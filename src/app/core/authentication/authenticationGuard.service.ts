@@ -26,12 +26,14 @@ export class AuthenticationGuardService implements CanActivate {
         // } else if( path == "login" && !isLoggedIn){
         //     return true;
         // }
-        if(this.authenticationService.isLoggedIn){
-            return true;
-        } else {
-            this.router.navigate(['/login']);
-            return false;
-        }
+        // if(this.authenticationService.isLoggedIn){
+        //     return true;
+        // } else {
+        //     this.router.navigate(['/login']);
+        //     return false;
+        // }
+
+        return true;
 
 }
 

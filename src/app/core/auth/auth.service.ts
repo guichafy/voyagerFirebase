@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { User } from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
+import { HttpResponse } from '@angular/common/http';
 
 
 
@@ -22,16 +23,16 @@ export class AuthService {
    })
   }
 
-  async login(email: string, password: string, nextUrl: string) {
-    var result = await this.afAuth.auth.signInWithEmailAndPassword(email, password)
-    this.user = result.user;
-    this.user$.next(result.user);
-    this.router.navigate([nextUrl]);
+   async login(email: string, password: string) {
+    let response = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+    this.user = response.user;
+    this.user$.next(response.user);
+    return response;
   }
 
     get isLoggedIn() {
-      console.log(this.user);
-      return this.user$.asObservable();
+    if(this.user == null) return false;
+    return !this.user.isAnonymous;
     // var result = false;
     // if (!this.afAuth.auth.currentUser || this.afAuth.auth.currentUser.isAnonymous) {
     //   result = false;

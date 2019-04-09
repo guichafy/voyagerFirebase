@@ -26,7 +26,7 @@
 
   <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLink='/admin/dashboard' routerLinkActive="active" *ngIf="authService.isLoggedIn">
+      <li class="nav-item" routerLink='/admin/dashboard' routerLinkActive="active">
         <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item" *ngIf="authService.isLoggedIn">
@@ -39,20 +39,13 @@
         <a class="nav-link" href="#">Switch account</a>
       </li>
     </ul>
-    <div class="my-2 my-lg-0" >
-      <div *ngIf="( authService.isLoggedIn | async) as user else elseBlock">
-        <ng-template #user>
-          <a class="btn text-light"  (click)="authService.logout()">Logout</a>
-        </ng-template>
-        <ng-template #elseBlock>
-            <a class="btn text-light"  routerLink='/admin/login'>Login</a>
-        </ng-template>
-      </div>
+    <div class="my-2 my-lg-0">
+      <!-- <a class="btn text-light"  routerLink='/admin/login'>Login</a> -->
+      <a class="btn text-light" *ngIf="( user$ | async ) as user;"  (click)="authService.logout()">Logout</a>
     </div>
- 
   </div>
 </nav>
-<!-- <div class="nav-scroller bg-white box-shadow" *ngIf="user">
+<div class="nav-scroller bg-white box-shadow" *ngIf="authService.isLoggedIn">
   <nav class="nav nav-underline">
     <a class="nav-link" routerLink='/admin/dashboard' routerLinkActive="active">Menu</a>
     <a class="nav-link" href="#">
@@ -67,4 +60,4 @@
     <a class="nav-link" href="#">Link</a>
     <a class="nav-link" href="#">Link</a>
   </nav>
-</div> -->
+</div>
